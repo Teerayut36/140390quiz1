@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
-    res.render('pages/index');
+  res.render('pages/index');
 });
 
 app.get('/students', function (req, res) {
@@ -20,6 +20,19 @@ app.get('/students', function (req, res) {
 
     console.log('DATA:' + rows);
     res.render('pages/students', { students: rows })
+
+    console.log('rows');
+
+  })
+  connection.end()
+});
+app.get('/subjects', function (req, res) {
+  connection.connect()
+
+  connection.query('select * from subjects', function (err, rows, fields) {
+
+    console.log('DATA:' + rows);
+    res.render('pages/subjects', { subjects: rows })
 
     console.log('rows');
 
