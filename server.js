@@ -11,9 +11,15 @@ app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
   res.render('pages/index');
-});
+  });
 
 app.get('/students', function (req, res) {
+  var connection = mysql.createConnection({
+    host: 'www.db4free.net',
+    user: 's140390',
+    password: 'abc123**',
+    database: 'db140390'
+  });
   connection.connect()
 
   connection.query('select * from students', function (err, rows, fields) {
@@ -27,6 +33,12 @@ app.get('/students', function (req, res) {
   connection.end()
 });
 app.get('/subjects', function (req, res) {
+  var connection = mysql.createConnection({
+    host: 'www.db4free.net',
+    user: 's140390',
+    password: 'abc123**',
+    database: 'db140390'
+  });
   connection.connect()
 
   connection.query('select * from subjects', function (err, rows, fields) {
